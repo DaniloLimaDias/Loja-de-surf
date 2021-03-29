@@ -3,6 +3,7 @@ export const environment = {
   firebase: {
     apiKey: "AIzaSyAg0rFxSfOiWjrvWL4voZQU_rP6ht8rSio",
     authDomain: "surfshop-6f363.firebaseapp.com",
+    databaseURL: "https://surfshop-6f363-default-rtdb.firebaseio.com",
     projectId: "surfshop-6f363",
     storageBucket: "surfshop-6f363.appspot.com",
     messagingSenderId: "542057546969",

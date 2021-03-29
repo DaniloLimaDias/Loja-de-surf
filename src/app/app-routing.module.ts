@@ -23,7 +23,13 @@ const routes: Routes = [
   },
   {
     path: 'details',
-    loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule)
+    loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'details/:id',
+    loadChildren: () => import('./pages/details/details.module').then( m => m.DetailsPageModule),
+    canActivate: [AuthGuard]
   },
 ];
 

@@ -1,8 +1,8 @@
-import { AuthService } from './../../services/auth.service';
-import { User } from '../../interfaces/user';
-import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonSlides, LoadingController, ToastController } from '@ionic/angular';
+import { User } from 'src/app/interfaces/user';
+import { AuthService } from 'src/app/services/auth.service';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 @Component({
   selector: 'app-login',
@@ -12,19 +12,19 @@ import { IonSlides, LoadingController, ToastController } from '@ionic/angular';
 export class LoginPage implements OnInit {
   @ViewChild(IonSlides) slides: IonSlides;
   public wavesPosition: number = 0;
-  public wavesDifference: number = 80;
+  private wavesDifference: number = 100;
   public userLogin: User = {};
   public userRegister: User = {};
   private loading: any;
 
   constructor(
-    public keyboard: Keyboard,
+    private authService: AuthService,
     private loadingCtrl: LoadingController,
-    private toasCtrl: ToastController,
-    private authService: AuthService
-  ) {}
+    private toastCtrl: ToastController,
+    public keyboard: Keyboard
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   segmentChanged(event: any) {
     if (event.detail.value === 'login') {
@@ -58,21 +58,15 @@ export class LoginPage implements OnInit {
     } finally {
       this.loading.dismiss();
     }
-    this.loading.dismiss();
   }
 
   async presentLoading() {
-    this.loading = await this.loadingCtrl.create({
-      message: 'Por favor aguarde...',
-    });
+    this.loading = await this.loadingCtrl.create({ message: 'Aguarde...' });
     return this.loading.present();
   }
 
   async presentToast(message: string) {
-    const toast = await this.toasCtrl.create({
-      message,
-      duration: 2000,
-    });
+    const toast = await this.toastCtrl.create({ message, duration: 2000 });
     toast.present();
   }
 }

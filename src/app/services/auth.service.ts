@@ -4,7 +4,7 @@ import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
-}) 
+})
 export class AuthService {
   constructor(private afa: AngularFireAuth) { }
 
@@ -17,7 +17,7 @@ export class AuthService {
   }
 
   logout() {
-    // return this.afa.signOut();
+    return this.afa.signOut();
   }
 
   getAuth() {
